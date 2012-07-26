@@ -3,9 +3,11 @@
 # usage: start <world_dir> <port> <ram_allocation>
 # runs the server
 
-i = 0
 while true
-  i += 1
-  puts "running #{i}"
-  sleep 5
+  input = $stdin.gets.strip
+  puts "[IN] #{input}"
+  case input
+  when 'stop'
+    exit
+  end
 end
