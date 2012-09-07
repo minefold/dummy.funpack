@@ -1,13 +1,24 @@
 #!/usr/bin/env ruby
 
+require 'json'
+
 # usage: start <world_dir> <port> <ram_allocation>
 # runs the server
 
+def event(name, attributes = {})
+  puts JSON.dump(attributes.merge(event: name, at: Time.now.to_i))
+end
+
+event :info, msg: 'starting the server'
+sleep 2
+event :started
+
 while true
   input = $stdin.gets.strip
-  puts "[IN] #{input}"
   case input
   when 'stop'
+    event :stopping
+    sleep 2
     exit
   end
 end
